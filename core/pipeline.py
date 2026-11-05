@@ -8,7 +8,7 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from core.data import MODELS, clean
 from core.labels import CATEGORIES, DISPLAY, URGENT
 from core.priority import LEVEL_RANK, priority
-from core.signals import EmotionScorer, SentimentScorer
+from core.signals import DEVICE, EmotionScorer, SentimentScorer
 
 
 class CategoryModel:
@@ -21,7 +21,7 @@ class CategoryModel:
         self.kind = kind
         if kind == "distilbert":
             self.tok = AutoTokenizer.from_pretrained(bert_dir)
-            self.model = AutoModelForSequenceClassification.from_pretrained(bert_dir).eval()
+            self.model = AutoModelForSequenceClassification.from_pretrained(bert_dir).to(DEVICE).eval()
             self.order = [self.model.config.id2label[i] for i in range(len(CATEGORIES))]
         else:
             self.model = joblib.load(MODELS / "baseline.joblib")
@@ -36,8 +36,8 @@ class CategoryModel:
             out = []
             for i in range(0, len(texts), batch_size):
                 enc = self.tok(list(texts[i:i + batch_size]), truncation=True, max_length=64,
-                               padding=True, return_tensors="pt")
-                out.append(torch.softmax(self.model(**enc).logits, -1).numpy())
+                               padding=True, return_tensors="pt").to(DEVICE)
+                out.append(torch.softmax(self.model(**enc).logits, -1).cpu().numpy())
             p = np.concatenate(out)
         return p[:, [self.order.index(c) for c in CATEGORIES]]
 

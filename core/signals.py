@@ -5,12 +5,13 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 EMOTION_MODEL = "j-hartmann/emotion-english-distilroberta-base"
 SENTIMENT_MODEL = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 
 class _Classifier:
     def __init__(self, name: str, max_len: int = 64):
         self.tok = AutoTokenizer.from_pretrained(name)
-        self.model = AutoModelForSequenceClassification.from_pretrained(name).eval()
+        self.model = AutoModelForSequenceClassification.from_pretrained(name).to(DEVICE).eval()
         self.labels = [self.model.config.id2label[i].lower()
                        for i in range(self.model.config.num_labels)]
         self.max_len = max_len
@@ -20,8 +21,8 @@ class _Classifier:
         out = []
         for i in range(0, len(texts), batch_size):
             enc = self.tok(list(texts[i:i + batch_size]), truncation=True,
-                           max_length=self.max_len, padding=True, return_tensors="pt")
-            out.append(torch.softmax(self.model(**enc).logits, -1).numpy())
+                           max_length=self.max_len, padding=True, return_tensors="pt").to(DEVICE)
+            out.append(torch.softmax(self.model(**enc).logits, -1).cpu().numpy())
         return np.concatenate(out) if out else np.zeros((0, len(self.labels)))
 
 
