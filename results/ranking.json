@@ -1,0 +1,47 @@
+{
+  "category_model": "TF-IDF + logistic regression",
+  "posts": 1582,
+  "posts_needing_help": 189,
+  "kerala_category_accuracy": 0.7395701643489254,
+  "kerala_category_macro_f1": 0.5840512995316881,
+  "priority_counts": {
+    "Low": 1304,
+    "Critical": 176,
+    "Medium": 71,
+    "High": 31
+  },
+  "ranking": {
+    "Chronological (today)": {
+      "precision_at_20": 0.3,
+      "precision_at_50": 0.28,
+      "precision_at_100": 0.27,
+      "precision_at_200": 0.23,
+      "posts_read_for_50pct": 467,
+      "posts_read_for_90pct": 1343
+    },
+    "Plain negative sentiment": {
+      "precision_at_20": 0.2,
+      "precision_at_50": 0.24,
+      "precision_at_100": 0.25,
+      "precision_at_200": 0.25,
+      "posts_read_for_50pct": 409,
+      "posts_read_for_90pct": 1057
+    },
+    "Distress only": {
+      "precision_at_20": 0.15,
+      "precision_at_50": 0.12,
+      "precision_at_100": 0.15,
+      "precision_at_200": 0.125,
+      "posts_read_for_50pct": 652,
+      "posts_read_for_90pct": 1227
+    },
+    "Our priority": {
+      "precision_at_20": 0.9,
+      "precision_at_50": 0.9,
+      "precision_at_100": 0.85,
+      "precision_at_200": 0.72,
+      "posts_read_for_50pct": 114,
+      "posts_read_for_90pct": 352
+    }
+  }
+}
