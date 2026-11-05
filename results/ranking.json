@@ -1,14 +1,14 @@
 {
-  "category_model": "TF-IDF + logistic regression",
+  "category_model": "DistilBERT (fine-tuned)",
   "posts": 1582,
   "posts_needing_help": 189,
-  "kerala_category_accuracy": 0.7395701643489254,
-  "kerala_category_macro_f1": 0.5840512995316881,
+  "kerala_category_accuracy": 0.7825537294563844,
+  "kerala_category_macro_f1": 0.6569189409781662,
   "priority_counts": {
-    "Low": 1304,
-    "Critical": 176,
-    "Medium": 71,
-    "High": 31
+    "Low": 1315,
+    "Critical": 166,
+    "Medium": 80,
+    "High": 21
   },
   "ranking": {
     "Chronological (today)": {
@@ -36,12 +36,12 @@
       "posts_read_for_90pct": 1227
     },
     "Our priority": {
-      "precision_at_20": 0.9,
-      "precision_at_50": 0.9,
-      "precision_at_100": 0.85,
-      "precision_at_200": 0.72,
-      "posts_read_for_50pct": 114,
-      "posts_read_for_90pct": 352
+      "precision_at_20": 1.0,
+      "precision_at_50": 0.98,
+      "precision_at_100": 0.92,
+      "precision_at_200": 0.725,
+      "posts_read_for_50pct": 103,
+      "posts_read_for_90pct": 355
     }
   }
 }

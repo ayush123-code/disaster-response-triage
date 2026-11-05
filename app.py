@@ -34,7 +34,7 @@ PRIORITY_COLOR = {
 EMO_LABELS = ["anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"]
 PHONE_RE = re.compile(r"\d(?:[\s-]*\d){7,}")
 EXAMPLES = [
-    "Need a boat at Aluva, 3 kids stuck on the roof, water rising fast",
+    "Family of 5 including a baby trapped on the roof in Pandanad, no food or water since yesterday. Please send help",
     "Praying for everyone in Kerala, so heartbreaking",
     "Bridge collapsed near Kochi, road closed",
 ]
